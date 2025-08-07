@@ -1,10 +1,13 @@
 package user;
 
 import base.components.core.Endpoint;
+import base.components.core.Selector;
 import base.components.core.Workspace;
 import org.junit.jupiter.api.Test;
 import user.utils.JwtTokenGenerator;
 import user.workspaces.collections.FakeStoreApiCollection;
+
+import java.time.Duration;
 
 import static user.workspaces.collections.FakeStoreApiCollection.*;
 
@@ -18,18 +21,16 @@ public class PostmanHelloWorld {
 
         workspace
                 .addCollection(FakeStoreApiCollection.FAKESTORE_API)
-                .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY)
+                .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY, Duration.ofHours(1))
 
-                .e$(GET_USERS).select()
-                .e$(LOGIN).qrset("token", "$.token").select()
+                .e$(LOGIN).select()
                 .e$(GET_PRODUCTS).select()
                 .e$(GET_CATEGORIES).select()
 
-                .set("{{jwtToken}}", jwtTokenGenerator.generateToken())
+                .set("{{access-token}}", jwtTokenGenerator.generateToken())
                 .set("host", "https://fakestoreapi.com")
                 .set("userName", "mor_2314")
                 .set("userPassword", "83r5^_")
-                .set("bearer", "Bearer {{token}}")
 
                 .e$(LOGIN).qrset("token", "$.token").backToCollection()
                 .selectedEndpoints(Endpoint::submit);
