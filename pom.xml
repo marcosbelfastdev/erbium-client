@@ -188,6 +188,13 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.14.9</version>
+        </dependency>
+
         <!-- junit-jupiter-api and junit-platform-suite-api are transitive, no need to declare them -->
     </dependencies>
 

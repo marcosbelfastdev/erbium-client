@@ -6,6 +6,7 @@ import user.scripts.responses.CheckStatusCode;
 
 public class CreateTeamWorkspace {
 
+
     public static final String PAYMENT_COLLECTION_ID = "10891144-aa7f3926-2762-4a3d-ab3f-115c1a2f4c27";
     public static final String PAYMENT_COLLECTION_APIKEY = "PMAK-685828898ccc110001854e2f-f645a11dd1497a7b1397d1452e6aebf7ac";
     public static final String PAYMENT_COLLECTION_NAME = "My Collection";

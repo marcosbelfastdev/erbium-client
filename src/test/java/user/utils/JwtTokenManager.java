@@ -27,4 +27,9 @@ public class JwtTokenManager extends RequestTrigger {
         currentUses++;
         return ((RequestManager) requestManager()).parentEndpoint();
     }
+
+    @Override
+    public void run() {
+        exec();
+    }
 }

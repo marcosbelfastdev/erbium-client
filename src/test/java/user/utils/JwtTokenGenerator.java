@@ -2,8 +2,8 @@ package user.utils;
 
 public class JwtTokenGenerator {
     String jwtToken;
-    public JwtTokenGenerator generateToken() {
+    public String generateToken() {
         jwtToken = JwtTokenUtil.generateRandomJwtPreToken();
-        return this;
+        return jwtToken;
     }
 }
