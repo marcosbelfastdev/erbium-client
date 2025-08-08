@@ -1,5 +1,20 @@
 package user.workspaces;
 
-public interface PostmanKey {
-    String DEMO_KEY = "PMAK-6894f6aa5439c40001fc4292-fa3dd03b6e9ac641f58c2e398e5ae70407";
+import br.com.erbium.utils.FileRepositoryUtil;
+
+import java.io.File;
+import java.io.IOException;
+
+public class PostmanKey {
+    static String demoKey;
+
+    public static synchronized String demoKey() {
+        try {
+            File file = FileRepositoryUtil.readFile(System.getProperty("user.home") + "/postman_key");
+            demoKey = FileRepositoryUtil.readFile(file).trim();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return demoKey;
+    }
 }

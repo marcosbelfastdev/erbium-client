@@ -21,7 +21,7 @@ public class PostmanHelloWorld {
 
         workspace
                 .addCollection(FakeStoreApiCollection.FAKESTORE_API)
-                .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY, Duration.ofHours(1))
+                .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY)
 
                 .e$(LOGIN).select()
                 .e$(GET_PRODUCTS).select()
