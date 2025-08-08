@@ -1,6 +1,6 @@
 package user.scripts.responses;
 
-import base.components.core.base.scripts.ResponseScript;
+import br.com.erbium.core.base.scripts.ResponseScript;
 import lombok.NonNull;
 
 public class CheckStatusCode extends ResponseScript implements Runnable {

@@ -1,7 +1,8 @@
 package user.scripts.requests;
 
-import base.components.core.Endpoint;
-import base.components.core.base.scripts.RequestScript;
+
+import br.com.erbium.core.Endpoint;
+import br.com.erbium.core.base.scripts.RequestScript;
 
 public class GeneralMakeStateful extends RequestScript {
 

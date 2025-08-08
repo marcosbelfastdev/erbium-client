@@ -1,6 +1,7 @@
 package user.triggers;
 
-import base.components.core.base.scripts.HeadersTrigger;
+
+import br.com.erbium.core.base.scripts.HeadersTrigger;
 
 public class UserHeadersTrigger extends HeadersTrigger {
 

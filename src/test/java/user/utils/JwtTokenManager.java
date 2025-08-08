@@ -1,8 +1,9 @@
 package user.utils;
 
-import base.components.core.Endpoint;
-import base.components.core.RequestManager;
-import base.components.core.base.scripts.RequestTrigger;
+
+import br.com.erbium.core.Endpoint;
+import br.com.erbium.core.RequestManager;
+import br.com.erbium.core.base.scripts.RequestTrigger;
 
 public class JwtTokenManager extends RequestTrigger {
 

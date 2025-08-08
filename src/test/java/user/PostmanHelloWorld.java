@@ -1,8 +1,8 @@
 package user;
 
-import base.components.core.Endpoint;
-import base.components.core.Selector;
-import base.components.core.Workspace;
+
+import br.com.erbium.core.Endpoint;
+import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Test;
 import user.utils.JwtTokenGenerator;
 import user.workspaces.collections.FakeStoreApiCollection;

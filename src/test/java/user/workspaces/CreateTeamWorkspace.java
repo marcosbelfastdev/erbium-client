@@ -1,7 +1,7 @@
 package user.workspaces;
 
+import br.com.erbium.core.Workspace;
 import user.scripts.requests.GeneralMakeStateful;
-import base.components.core.Workspace;
 import user.scripts.responses.CheckStatusCode;
 
 public class CreateTeamWorkspace {
@@ -21,15 +21,15 @@ public class CreateTeamWorkspace {
 
 
         workspace = new Workspace();
-        workspace
-                .addCollection(PAYMENT_COLLECTION_NAME)
-                .importPostManCollection(
-                        PAYMENT_COLLECTION_ID,
-                        PAYMENT_COLLECTION_APIKEY)
-                .getEndpoints().forEach(endpoint -> {
-                    endpoint.addRequestScript("General Make Stateful", GeneralMakeStateful.class)
-                            .addResponseScript("Check Status Code", CheckStatusCode.class);
-                });
+//        workspace
+//                .addCollection(PAYMENT_COLLECTION_NAME)
+//                .importPostManCollection(
+//                        PAYMENT_COLLECTION_ID,
+//                        PAYMENT_COLLECTION_APIKEY)
+//                .getEndpoints().forEach(endpoint -> {
+//                    endpoint.addRequestScript("General Make Stateful", GeneralMakeStateful.class)
+//                            .addResponseScript("Check Status Code", CheckStatusCode.class);
+//                });
 
 
 
