@@ -1,6 +1,3 @@
-package user;
-
-
 import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Test;
