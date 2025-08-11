@@ -47,7 +47,7 @@ public class PostmanInternetHelloWorldCustomRouters {
 
                 .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY, Duration.ofDays(365))
 
-                // Select some endpoints for batch submission later
+                // Select some endpoints for batch submission later (order is important)
                 .e$(LOGIN).select()
                 .e$(GET_PRODUCTS).select()
                 .e$(GET_CATEGORIES).select()

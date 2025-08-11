@@ -29,7 +29,7 @@ public class PostmanJsonHelloWorld {
                 .e$(GET_PRODUCTS).select()
                 .e$(GET_CATEGORIES).select()
 
-                // Set the collection environment variables required
+                // Select some endpoints for batch submission later (order is important)
                 .set("{{access-token}}", jwtTokenGenerator.generateToken())
                 .set("host", "https://fakestoreapi.com")
                 .set("userName", "mor_2314")
