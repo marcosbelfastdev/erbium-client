@@ -36,7 +36,15 @@ public class PostmanInternetHelloWorldCustomRouters {
         workspace
                 // Create empty collection
                 .addCollection(FakeStoreApiCollection.FAKESTORE_API)
-                // import from Postman
+
+                // Import from Postman
+                // You need to import postman collection json in 'resources' to Postman first
+                // and customize UID and API KEY
+
+                // This imports by hitting and downloading the postman collection from Postman servers
+                // Note the Duration parameter. Remove it or set it to a few seconds to always download from Postman
+                // else it will hit the cached json file in user profile/.erbium/ directory
+
                 .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY, Duration.ofDays(365))
 
                 // Select some endpoints for batch submission later
