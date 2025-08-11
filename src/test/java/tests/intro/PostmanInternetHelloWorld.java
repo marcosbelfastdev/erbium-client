@@ -21,6 +21,8 @@ public class PostmanInternetHelloWorld {
                 // Create empty collection
                 .addCollection(FakeStoreApiCollection.FAKESTORE_API)
                 // import from Postman
+                // You need to import postman collection json to Postman first
+                // and customize UID and API KEY
                 .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY, Duration.ofDays(365))
 
                 // Select some endpoints for batch submission later

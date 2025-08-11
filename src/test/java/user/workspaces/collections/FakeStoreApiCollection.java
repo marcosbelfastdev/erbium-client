@@ -6,7 +6,6 @@ public interface FakeStoreApiCollection {
 
     String FAKESTORE_API = "Fake Store API Collection";
     String UID = "10891144-bbb2afb7-123c-4e52-aeb2-432e40ac004c";
-    //String KEY = PostmanKey.DEMO_KEY;
     String KEY = PostmanKey.demoKey();
 
     String LOGIN = "Login|Login";
