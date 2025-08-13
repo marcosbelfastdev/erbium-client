@@ -1,13 +1,12 @@
-package tests.intro;
+package repositories.repo2.fakeStore;
 
+import admin.common.factories.MasterFakeStoreFactory;
 import br.com.erbium.core.*;
 import org.junit.jupiter.api.Test;
 import user.utils.JwtTokenGenerator;
-import user.workspaces.collections.FakeStoreApiCollection;
+
 
 import java.time.Duration;
-
-import static user.workspaces.collections.FakeStoreApiCollection.*;
 
 public class PostmanInternetHelloWorldCustomRouters {
 
@@ -35,7 +34,7 @@ public class PostmanInternetHelloWorldCustomRouters {
 
         workspace
                 // Create empty collection
-                .addCollection(FakeStoreApiCollection.FAKESTORE_API)
+                .addCollection(MasterFakeStoreFactory.FAKESTORE_API)
 
                 // Import from Postman
                 // You need to import postman collection json in 'resources' to Postman first
@@ -45,12 +44,12 @@ public class PostmanInternetHelloWorldCustomRouters {
                 // Note the Duration parameter. Remove it or set it to a few seconds to always download from Postman
                 // else it will hit the cached json file in user profile/.erbium/ directory
 
-                .importPostManCollection(FakeStoreApiCollection.UID, FakeStoreApiCollection.KEY, Duration.ofDays(365))
+                .importPostManCollection(MasterFakeStoreFactory.UID, MasterFakeStoreFactory.KEY, Duration.ofDays(365))
 
                 // Select some endpoints for batch submission later (order is important)
-                .e$(LOGIN).select()
-                .e$(GET_PRODUCTS).select()
-                .e$(GET_CATEGORIES).select()
+                .e$(MasterFakeStoreFactory.LOGIN).select()
+                .e$(MasterFakeStoreFactory.GET_PRODUCTS).select()
+                .e$(MasterFakeStoreFactory.GET_CATEGORIES).select()
 
                 // Set the collection environment variables required
                 .set("{{access-token}}", jwtTokenGenerator.generateToken())
@@ -58,7 +57,7 @@ public class PostmanInternetHelloWorldCustomRouters {
                 .set("userName", "mor_2314")
                 .set("userPassword", "83r5^_")
 
-                .e$(LOGIN)
+                .e$(MasterFakeStoreFactory.LOGIN)
                 // Force the variable token to get the value of token property after response
                 .qrset("token", "$.token").backToCollection()
 

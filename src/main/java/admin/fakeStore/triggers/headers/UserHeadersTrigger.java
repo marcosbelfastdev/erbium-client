@@ -1,4 +1,4 @@
-package user.triggers;
+package admin.fakeStore.triggers.headers;
 
 
 import br.com.erbium.core.base.scripts.HeadersTrigger;

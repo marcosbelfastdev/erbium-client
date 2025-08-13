@@ -4,15 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>my-java21-project</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>Java 21 Project with JUnit 5</name>
+    <groupId>com.github.marcosbelfastdev</groupId>
+    <artifactId>erbium-client</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Erbium Client</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release> <!-- Java 21 -->
-        <junit.jupiter.version>5.10.1</junit.jupiter.version> <!-- Latest stable JUnit 5 -->
+        <junit.jupiter.version>5.10.2</junit.jupiter.version> <!-- Latest stable JUnit 5 -->
+        <cucumber.version>7.18.0</cucumber.version>
+        <lombok.version>1.18.34</lombok.version>
     </properties>
 
     <repositories>
@@ -22,20 +24,52 @@
         </repository>
     </repositories>
 
-    <dependencies>
-        <!-- JUnit 5 Jupiter API (for writing tests) -->
+    <dependencyManagement>
+        <dependencies>
+        <!-- Import Cucumber BOM to manage versions for all cucumber dependencies -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-bom</artifactId>
+            <version>${cucumber.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <!-- Import JUnit 5 BOM for consistent versions -->
+        <dependency>
+            <groupId>org.junit</groupId>
+            <artifactId>junit-bom</artifactId>
             <version>${junit.jupiter.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Cucumber Java API -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- This is the bridge between Cucumber and the JUnit 5 Platform -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 5 Jupiter Engine (for running tests) -->
+        <!-- JUnit 5 Dependencies (Jupiter API and Engine) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.jupiter.version}</version>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- This dependency provides the @Suite runner and its related annotations -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -47,8 +81,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version>
-            <scope>test</scope>
+            <version>${lombok.version}</version>
+            <scope>provided</scope> <!-- Lombok is a compile-time dependency -->
         </dependency>
     </dependencies>
 
@@ -59,6 +93,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
 
             <!-- Surefire Plugin for JUnit 5 test execution -->
@@ -66,6 +110,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
+                <!-- This configuration is crucial to ensure Surefire finds your runner -->
+                <configuration>
+                    <includes>
+                        <include>**/*Runner.java</include>
+                    </includes>
+                </configuration>
             </plugin>
         </plugins>
     </build>

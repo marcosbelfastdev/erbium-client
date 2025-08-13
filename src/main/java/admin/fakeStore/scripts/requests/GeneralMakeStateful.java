@@ -1,4 +1,4 @@
-package user.scripts.requests;
+package admin.fakeStore.scripts.requests;
 
 
 import br.com.erbium.core.Endpoint;

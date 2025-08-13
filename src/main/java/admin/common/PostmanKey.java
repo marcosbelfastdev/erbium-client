@@ -1,4 +1,4 @@
-package user.workspaces;
+package admin.common;
 
 import br.com.erbium.utils.FileRepositoryUtil;
 
