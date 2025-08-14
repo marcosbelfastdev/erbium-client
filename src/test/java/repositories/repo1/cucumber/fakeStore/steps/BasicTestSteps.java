@@ -4,6 +4,7 @@ import admin.common.factories.MasterFakeStoreFactory;
 import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Collection;
 import br.com.erbium.core.Endpoint;
+import br.com.erbium.core.TestRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
