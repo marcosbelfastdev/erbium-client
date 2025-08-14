@@ -25,19 +25,7 @@ public class SampleTest extends TestNgHooks {
         Workspace workspace = testNgMainFactory.createWorkspace();
         JwtTokenGenerator jwtTokenGenerator = new JwtTokenGenerator();
 
-        workspace
-                // Create empty collection
-                .addCollection(FAKESTORE_COLLECTION)
-
-                // Import from Postman
-                // You need to import postman collection json in 'resources' to Postman first
-                // and customize UID and API KEY
-
-                // This imports by hitting and downloading the postman collection from Postman servers
-                // Note the Duration parameter. Remove it or set it to a few seconds to always download from Postman
-                // else it will hit the cached json file in user profile/.erbium/ directory
-                .importPostManCollection(FAKESTORE_COLLECTION_UID, FAKESTORE_POSTMAN_API_KEY, Duration.ofDays(365))
-
+        workspace.c$(FAKESTORE_COLLECTION)
                 // Select some endpoints for batch submission later (order is important)
                 .e$(FAKESTORE_LOGIN).select()
                 .e$(FAKESTORE_GET_PRODUCTS).select()
@@ -62,10 +50,7 @@ public class SampleTest extends TestNgHooks {
         Workspace workspace = testNgMainFactory.createWorkspace();
         JwtTokenGenerator jwtTokenGenerator = new JwtTokenGenerator();
 
-        workspace
-                .addCollection(FAKESTORE_COLLECTION)
-                .importPostManCollection(FAKESTORE_COLLECTION_UID, FAKESTORE_POSTMAN_API_KEY, Duration.ofDays(365))
-
+        workspace.c$(FAKESTORE_COLLECTION)
                 .given("basic setup", (collection) -> {
                     collection
                             // Set the collection environment variables required
@@ -80,10 +65,10 @@ public class SampleTest extends TestNgHooks {
 
                             .e$(FAKESTORE_LOGIN)
                             // Force the variable token to get the value of token property after response
-                            .qrset("token", "$.token").backToCollection()
-                            .getEndpoints().forEach(endpoint -> {
-                                endpoint.addResponseScript("Check status code", CheckStatusCode.class);
-                            });
+                            .qrset("token", "$.token").backToCollection();
+//                            .getEndpoints().forEach(endpoint -> {
+//                                endpoint.addResponseScript("Check status code", CheckStatusCode.class);
+//                            });
                 })
 
                 .when("submit all", (collection) -> {

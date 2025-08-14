@@ -2,7 +2,7 @@
 <suite name="MySuite">
     <test name="MyTests">
         <classes>
-            <class name="com.example.MyTest"/>
+            <class name="repositories.repo3.testng.fakeStore.SampleTest"/>
         </classes>
     </test>
 </suite>

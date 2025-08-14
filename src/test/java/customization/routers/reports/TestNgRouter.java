@@ -3,11 +3,12 @@ package customization.routers.reports;
 import br.com.erbium.core.EItem;
 import br.com.erbium.core.EType;
 import br.com.erbium.core.ReportRouter;
+import br.com.erbium.core.TargetOutput;
 import org.testng.Reporter;
 
 public class TestNgRouter implements ReportRouter {
 
-    int targetOutput;
+    int targetOutput = TargetOutput.REPORT;
 
 
     @Override
@@ -22,7 +23,12 @@ public class TestNgRouter implements ReportRouter {
 
     @Override
     public void route(EType eType, EItem eItem, String s) {
-        Reporter.log(eType.toString() + ": " + eItem.toString() + ": "+ s, true);
+        String message = null;
+        if (!eType.equals(EType.INFO)) {
+            message += eType;
+        }
+        message += s;
+        Reporter.log(s, true);
     }
 
     @Override

@@ -21,7 +21,6 @@ public class TestNgHooks {
     @BeforeTest
     public void beforeTest() {
         testNgMainFactory = new TestNgMainFactory();
-        testNgMainFactory.createWorkspace();
     }
 
     @AfterTest

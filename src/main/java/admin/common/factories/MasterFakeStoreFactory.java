@@ -4,6 +4,8 @@ import admin.common.PostmanKey;
 import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Workspace;
 
+import java.time.Duration;
+
 public class MasterFakeStoreFactory {
 
     public static Workspace createWorkspace() {
@@ -20,7 +22,7 @@ public class MasterFakeStoreFactory {
                 // This imports by hitting and downloading the postman collection from Postman servers
                 // Note the Duration parameter. Remove it or set it to a few seconds to always download from Postman
                 // else it will hit the cached json file in user profile/.erbium/ directory
-                .importPostManCollection(FAKESTORE_COLLECTION_UID, FAKESTORE_POSTMAN_API_KEY)
+                .importPostManCollection(FAKESTORE_COLLECTION_UID, FAKESTORE_POSTMAN_API_KEY, Duration.ofHours(12))
 
 
                 // Add the general codes to all endpoints
