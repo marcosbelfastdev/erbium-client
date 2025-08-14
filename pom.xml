@@ -46,6 +46,21 @@
     </dependencyManagement>
 
     <dependencies>
+
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>7.10.2</version> <!-- latest stable as of Aug 2025 -->
+                <scope>test</scope>
+            </dependency>
+
+        <dependency>
+            <groupId>org.uncommons</groupId>
+            <artifactId>reportng</artifactId>
+            <version>1.1.4</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Cucumber Java API -->
         <dependency>
             <groupId>io.cucumber</groupId>

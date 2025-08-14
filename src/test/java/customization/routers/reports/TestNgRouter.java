@@ -3,16 +3,12 @@ package customization.routers.reports;
 import br.com.erbium.core.EItem;
 import br.com.erbium.core.EType;
 import br.com.erbium.core.ReportRouter;
-import io.cucumber.java.Scenario;
+import org.testng.Reporter;
 
-public class FakeStoreCucumberRouter implements ReportRouter {
+public class TestNgRouter implements ReportRouter {
 
-    Scenario scenario;
     int targetOutput;
 
-    public FakeStoreCucumberRouter(Scenario scenario) {
-        this.scenario = scenario;
-    }
 
     @Override
     public void setTargetOutput(int i) {
@@ -26,26 +22,26 @@ public class FakeStoreCucumberRouter implements ReportRouter {
 
     @Override
     public void route(EType eType, EItem eItem, String s) {
-        scenario.log(eType.toString() + " " + eItem.toString() + " " + s);
+        Reporter.log(eType.toString() + ": " + eItem.toString() + ": "+ s, true);
     }
 
     @Override
     public void route(String s) {
-        scenario.log(s);
+        route(EType.INFO, EItem.MESSAGE, s);
     }
 
     @Override
     public void route(EType eType, String s) {
-        scenario.log(eType.toString() + " " + s);
+       route(eType, EItem.MESSAGE, s);
     }
 
     @Override
     public void route(EItem eItem, String s) {
-        scenario.log(eItem.toString() + " " + s);
+        route(EType.INFO, eItem, s);
     }
 
     @Override
     public String getName() {
-        return "Cucumber Report";
+        return "TestNG Report";
     }
 }

@@ -3,7 +3,7 @@ package customization.factories;
 import br.com.erbium.core.*;
 import io.cucumber.java.Scenario;
 import lombok.Getter;
-import customization.routers.reports.FakeStoreCucumberRouter;
+import customization.routers.reports.CucumberRouter;
 
 
 public class TeamFakeStoreCucumberFactory {
@@ -24,7 +24,7 @@ public class TeamFakeStoreCucumberFactory {
 
         routers = new Routers(config); // create router container
         routers.add(new DefaultConsoleRouter()); // add first report router (console in this case)
-        routers.add(new FakeStoreCucumberRouter(scenario)); // add second report router (Cucumber in this case)
+        routers.add(new CucumberRouter(scenario)); // add second report router (Cucumber in this case)
 
         TeamFakeStoreFactory teamFactory = new TeamFakeStoreFactory(); // create team's factory
         workspace = teamFactory.createWorkspace();

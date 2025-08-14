@@ -11,7 +11,7 @@ public class TeamFakeStoreFactory {
 
     public Workspace createWorkspace() {
         workspace = MasterFakeStoreFactory.createWorkspace();
-        // Add scripts that can be part of all tests
+        // Add scripts that can be part of all tests for this team, or repository etc.
         // Add triggers that will be called before and after each test
         return workspace;
     }
