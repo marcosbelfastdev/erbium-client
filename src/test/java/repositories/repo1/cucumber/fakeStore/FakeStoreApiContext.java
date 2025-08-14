@@ -1,6 +1,7 @@
 package repositories.repo1.cucumber.fakeStore;
 
 import admin.common.factories.MasterFakeStoreFactory;
+
 import br.com.erbium.core.Collection;
 import br.com.erbium.core.Workspace;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class FakeStoreApiContext {
 
 
     public Collection getFakeStoreCollection() {
-        return workspace.getCollection(MasterFakeStoreFactory.FAKESTORE_API);
+        return workspace.getCollection(MasterFakeStoreFactory.FAKESTORE_COLLECTION);
     }
 
     public JwtTokenGenerator getJwtTokenGenerator() {

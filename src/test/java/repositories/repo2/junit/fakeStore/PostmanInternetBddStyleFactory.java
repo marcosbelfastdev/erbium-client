@@ -1,6 +1,5 @@
-package repositories.repo2.fakeStore;
+package repositories.repo2.junit.fakeStore;
 
-import admin.common.factories.MasterFakeStoreFactory;
 import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
@@ -8,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import user.factories.TeamFakeStoreFactory;
 import user.utils.JwtTokenGenerator;
+import static admin.common.factories.MasterFakeStoreFactory.*;
+
 
 public class PostmanInternetBddStyleFactory {
 
@@ -21,7 +22,7 @@ public class PostmanInternetBddStyleFactory {
         workspace = teamFakeStoreFactory.createWorkspace();
 
         workspace
-                .c$(MasterFakeStoreFactory.FAKESTORE_API)
+                .c$(FAKESTORE_COLLECTION)
 
                 .given((collection) -> {
                     collection
@@ -30,11 +31,11 @@ public class PostmanInternetBddStyleFactory {
                             .set("userName", "mor_2314")
                             .set("userPassword", "83r5^_")
 
-                            .e$(MasterFakeStoreFactory.LOGIN).select()
-                            .e$(MasterFakeStoreFactory.GET_PRODUCTS).select()
-                            .e$(MasterFakeStoreFactory.GET_CATEGORIES).select()
+                            .e$(FAKESTORE_LOGIN).select()
+                            .e$(FAKESTORE_GET_PRODUCTS).select()
+                            .e$(FAKESTORE_GET_CATEGORIES).select()
 
-                            .e$(MasterFakeStoreFactory.LOGIN)
+                            .e$(FAKESTORE_LOGIN)
                             .qrset("token", "$.token");
                 })
 
@@ -54,7 +55,7 @@ public class PostmanInternetBddStyleFactory {
     public void test2() {
         workspace = teamFakeStoreFactory.createWorkspace();
         workspace
-                .c$(MasterFakeStoreFactory.FAKESTORE_API)
+                .c$(FAKESTORE_COLLECTION)
 
                 .given("basic setup", (collection) -> {
                     collection
@@ -63,11 +64,11 @@ public class PostmanInternetBddStyleFactory {
                             .set("userName", "xpto")
                             .set("userPassword", "incorrect")
 
-                            .e$(MasterFakeStoreFactory.LOGIN).select()
-                            .e$(MasterFakeStoreFactory.GET_PRODUCTS).select()
-                            .e$(MasterFakeStoreFactory.GET_CATEGORIES).select()
+                            .e$(FAKESTORE_LOGIN).select()
+                            .e$(FAKESTORE_GET_PRODUCTS).select()
+                            .e$(FAKESTORE_GET_CATEGORIES).select()
 
-                            .e$(MasterFakeStoreFactory.LOGIN)
+                            .e$(FAKESTORE_LOGIN)
                             .qrset("token", "$.token");
                 })
 

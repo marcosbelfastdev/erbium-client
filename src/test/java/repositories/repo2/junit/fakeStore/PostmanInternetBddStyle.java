@@ -1,6 +1,5 @@
-package repositories.repo2.fakeStore;
+package repositories.repo2.junit.fakeStore;
 
-import admin.common.factories.MasterFakeStoreFactory;
 import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
@@ -9,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import user.utils.JwtTokenGenerator;
 
 import java.time.Duration;
+
+import static admin.common.factories.MasterFakeStoreFactory.*;
 
 public class PostmanInternetBddStyle {
 
@@ -19,8 +20,8 @@ public class PostmanInternetBddStyle {
         JwtTokenGenerator jwtTokenGenerator = new JwtTokenGenerator();
 
         workspace
-                .addCollection(MasterFakeStoreFactory.FAKESTORE_API)
-                .importPostManCollection(MasterFakeStoreFactory.UID, MasterFakeStoreFactory.KEY, Duration.ofDays(365))
+                .addCollection(FAKESTORE_COLLECTION)
+                .importPostManCollection(FAKESTORE_COLLECTION_UID, FAKESTORE_POSTMAN_API_KEY, Duration.ofDays(365))
 
                 .given("basic setup", (collection) -> {
                     collection
@@ -30,13 +31,16 @@ public class PostmanInternetBddStyle {
                             .set("userName", "mor_2314")
                             .set("userPassword", "83r5^_")
                             // Select some endpoints for batch submission later (order is important)
-                            .e$(MasterFakeStoreFactory.LOGIN).select()
-                            .e$(MasterFakeStoreFactory.GET_PRODUCTS).select()
-                            .e$(MasterFakeStoreFactory.GET_CATEGORIES).select()
+                            .e$(FAKESTORE_LOGIN).select()
+                            .e$(FAKESTORE_GET_PRODUCTS).select()
+                            .e$(FAKESTORE_GET_CATEGORIES).select()
 
-                            .e$(MasterFakeStoreFactory.LOGIN)
+                            .e$(FAKESTORE_LOGIN)
                             // Force the variable token to get the value of token property after response
-                            .qrset("token", "$.token");
+                            .qrset("token", "$.token").backToCollection()
+                            .getEndpoints().forEach(endpoint -> {
+                                endpoint.addResponseScript("Check status code", CheckStatusCode.class);
+                            });
                 })
 
                 .when("submit all", (collection) -> {
@@ -45,7 +49,7 @@ public class PostmanInternetBddStyle {
 
                 .then("check status codes", (collection) -> {
                     collection.selectedEndpoints(endpoint -> {
-                        Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200, 201)
+                        Assertions.assertTrue(endpoint.getResponseScript("Check status code", CheckStatusCode.class).isStatusCodeAnyOf(200, 201)
                         );
                     });
                 });

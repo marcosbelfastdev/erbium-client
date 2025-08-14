@@ -9,7 +9,7 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import repositories.repo1.cucumber.fakeStore.FakeStoreApiContext;
 
-import static admin.common.factories.MasterFakeStoreFactory.LOGIN;
+import static admin.common.factories.MasterFakeStoreFactory.FAKESTORE_LOGIN;
 
 public class BasicTestSteps {
 
@@ -31,10 +31,10 @@ public class BasicTestSteps {
     @When("I submit the endpoints")
     public void iSubmitTheEndpoints() {
         fakeStoreApiContext.getFakeStoreCollection()
-                .e$(LOGIN).select()
-                .e$(MasterFakeStoreFactory.GET_PRODUCTS).select()
-                .e$(MasterFakeStoreFactory.GET_CATEGORIES).select()
-                .e$(LOGIN)
+                .e$(FAKESTORE_LOGIN).select()
+                .e$(MasterFakeStoreFactory.FAKESTORE_GET_PRODUCTS).select()
+                .e$(MasterFakeStoreFactory.FAKESTORE_GET_CATEGORIES).select()
+                .e$(FAKESTORE_LOGIN)
                 .qrset("token", "$.token").backToCollection()
                 .selectedEndpoints(Endpoint::submit);
     }

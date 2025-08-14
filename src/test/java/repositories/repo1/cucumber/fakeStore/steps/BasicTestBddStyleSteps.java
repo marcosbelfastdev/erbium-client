@@ -9,6 +9,8 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import repositories.repo1.cucumber.fakeStore.FakeStoreApiContext;
 
+import static admin.common.factories.MasterFakeStoreFactory.*;
+
 public class BasicTestBddStyleSteps {
 
     private final FakeStoreApiContext fakeStoreApiContext;
@@ -20,7 +22,7 @@ public class BasicTestBddStyleSteps {
     @Given("the test data is set up")
     public void theTestDataIsSetUp() {
         fakeStoreApiContext.getFakeStoreCollection()
-                .given((collection) -> {
+                .given("The test data is set up", (collection) -> {
                     collection
 
                             .set("{{access-token}}", fakeStoreApiContext.getJwtTokenGenerator().generateToken())
@@ -28,10 +30,10 @@ public class BasicTestBddStyleSteps {
                             .set("userName", "mor_2314")
                             .set("userPassword", "83r5^_")
 
-                            .e$(MasterFakeStoreFactory.LOGIN).select()
-                            .e$(MasterFakeStoreFactory.GET_PRODUCTS).select()
-                            .e$(MasterFakeStoreFactory.GET_CATEGORIES).select()
-                            .e$(MasterFakeStoreFactory.LOGIN)
+                            .e$(FAKESTORE_LOGIN).select()
+                            .e$(FAKESTORE_GET_PRODUCTS).select()
+                            .e$(FAKESTORE_GET_CATEGORIES).select()
+                            .e$(FAKESTORE_LOGIN)
                             .qrset("token", "$.token");
                 });
     }
@@ -39,7 +41,7 @@ public class BasicTestBddStyleSteps {
     @When("I submit the endpoints")
     public void iSubmitTheEndpoints() {
         fakeStoreApiContext.getFakeStoreCollection()
-                .when((collection) -> {
+                .when("Submit endpoints", (collection) -> {
                     collection
                             .selectedEndpoints(Endpoint::submit);
                 });
@@ -48,9 +50,13 @@ public class BasicTestBddStyleSteps {
     @Then("the results are displayed")
     public void theResultsAreDisplayed() {
         fakeStoreApiContext.getFakeStoreCollection()
-                .selectedEndpoints(endpoint -> {
-                    Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200)
-                    );
+                .then("Check status codes", (collection) -> {
+                    collection
+                            .selectedEndpoints(endpoint -> {
+                        Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200)
+                        );
+                    });
                 });
+
     }
 }

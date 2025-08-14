@@ -5,25 +5,26 @@ import lombok.NonNull;
 
 public class CheckStatusCode extends ResponseScript implements Runnable {
 
-    Integer expectedStatusCode;
-    Integer actualStatusCode;
-
-    
     public boolean isStatusCode(@NonNull Integer expectedStatusCode) {
-        return expectedStatusCode == actualStatusCode;
+        return expectedStatusCode == getStatusCode();
     }
 
     public boolean isStatusCodeInRange(@NonNull Integer min, @NonNull Integer max) {
-        return min <= actualStatusCode && actualStatusCode <= max;
+        return min <= getStatusCode() && getStatusCode() <= max;
     }
 
     public boolean isStatusCodeAnyOf(@NonNull Integer... expectedStatusCodes) {
         for (Integer expectedStatusCode : expectedStatusCodes) {
-            if (expectedStatusCode == actualStatusCode) {
+            if (expectedStatusCode == getStatusCode()) {
                 return true;
             }
         }
         return false;
+    }
+
+    public int getStatusCode() {
+        int code = responseManager().getLastResponse().code();
+        return code;
     }
 
 
