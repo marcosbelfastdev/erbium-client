@@ -1,9 +1,10 @@
-package user.factories;
+package customization.factories;
 
-import admin.common.factories.MasterFakeStoreFactory;
 import br.com.erbium.core.*;
+import io.cucumber.java.Scenario;
 import lombok.Getter;
-import user.routers.reports.FakeStoreCucumberRouter;
+import customization.routers.reports.FakeStoreCucumberRouter;
+
 
 public class TeamFakeStoreCucumberFactory {
 
@@ -15,7 +16,7 @@ public class TeamFakeStoreCucumberFactory {
     Workspace workspace;
     Routers routers;
 
-    public Workspace createWorkspace() {
+    public Workspace createWorkspace(Scenario scenario) {
 
         OutputConfig config = new OutputConfig() // creates and sets WHAT is logged (all by default, then:)
                 .set(TargetOutput.NONE, EItem.ENVIRONMENT_TABLE) // remove item from destinations
@@ -23,7 +24,7 @@ public class TeamFakeStoreCucumberFactory {
 
         routers = new Routers(config); // create router container
         routers.add(new DefaultConsoleRouter()); // add first report router (console in this case)
-        routers.add(new FakeStoreCucumberRouter()); // add second report router (Cucumber in this case)
+        routers.add(new FakeStoreCucumberRouter(scenario)); // add second report router (Cucumber in this case)
 
         TeamFakeStoreFactory teamFactory = new TeamFakeStoreFactory(); // create team's factory
         workspace = teamFactory.createWorkspace();

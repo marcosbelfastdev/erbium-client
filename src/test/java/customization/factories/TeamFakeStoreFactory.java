@@ -1,9 +1,8 @@
-package user.factories;
+package customization.factories;
 
 import admin.common.factories.MasterFakeStoreFactory;
 import br.com.erbium.core.*;
 import lombok.Getter;
-import user.routers.reports.FakeStoreCucumberRouter;
 
 public class TeamFakeStoreFactory {
 

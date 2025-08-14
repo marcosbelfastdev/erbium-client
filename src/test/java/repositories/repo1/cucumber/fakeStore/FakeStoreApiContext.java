@@ -4,8 +4,9 @@ import admin.common.factories.MasterFakeStoreFactory;
 
 import br.com.erbium.core.Collection;
 import br.com.erbium.core.Workspace;
+import io.cucumber.java.Scenario;
 import lombok.Getter;
-import user.factories.TeamFakeStoreCucumberFactory;
+import customization.factories.TeamFakeStoreCucumberFactory;
 import user.utils.JwtTokenGenerator;
 
 /**
@@ -15,14 +16,23 @@ import user.utils.JwtTokenGenerator;
  */
 public class FakeStoreApiContext {
 
+    public static FakeStoreApiContext instance;
+
     @Getter
     Workspace workspace;
-
     JwtTokenGenerator jwtTokenGenerator;
 
-    public void createWorkspace() {
+    public static FakeStoreApiContext getInstance() {
+        return instance == null ? instance = new FakeStoreApiContext() : instance;
+    }
+
+    public static FakeStoreApiContext getNewInstance() {
+        return instance = new FakeStoreApiContext();
+    }
+
+    public void createWorkspace(Scenario scenario) {
         TeamFakeStoreCucumberFactory teamFakeStoreCucumberFactory = new TeamFakeStoreCucumberFactory();
-        workspace = teamFakeStoreCucumberFactory.createWorkspace();
+        workspace = teamFakeStoreCucumberFactory.createWorkspace(scenario);
         jwtTokenGenerator = new JwtTokenGenerator();
     }
 

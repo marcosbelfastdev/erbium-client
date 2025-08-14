@@ -10,13 +10,6 @@ import repositories.repo1.cucumber.fakeStore.FakeStoreApiContext;
  */
 public class Hooks {
 
-    private final FakeStoreApiContext fakeStoreApiContext;
-
-    public Hooks(FakeStoreApiContext fakeStoreApiContext) {
-        this.fakeStoreApiContext = fakeStoreApiContext;
-    }
-
-
     /**
      * This method is executed before each individual scenario.
      * It's an ideal place for setup logic that needs to be run
@@ -34,6 +27,6 @@ public class Hooks {
 
         // Let's create a new workspace from scratch every time we run a scenario
         // so to make sure we're starting with a clean state
-        fakeStoreApiContext.createWorkspace();
+        FakeStoreApiContext.getNewInstance().createWorkspace(scenario);
     }
 }
