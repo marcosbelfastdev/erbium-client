@@ -1,12 +1,15 @@
 package repositories.repo2.junit.fakeStore;
 
 import admin.common.scripts.responses.CheckStatusCode;
+import admin.fakeStore.scripts.responses.SchemaValidation;
 import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import customization.factories.TeamFakeStoreFactory;
+import repositories.common.fakeStore.FakeStoreSchemas;
 import user.utils.JwtTokenGenerator;
+
 import static admin.common.factories.MasterFakeStoreFactory.*;
 
 
@@ -43,10 +46,11 @@ public class PostmanInternetBddStyleFactory {
                     collection.selectedEndpoints(Endpoint::submit);
                 })
 
-                .then("check status codes", (collection) -> {
+                .then("check status codes and schema", (collection) -> {
                     collection.selectedEndpoints(endpoint -> {
-                        Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200, 201)
-                        );
+                        String endpointName = endpoint.name();
+                        Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200, 201));
+                        endpoint.getResponseScript(SchemaValidation.class).assertSchema();
                     });
                 });
     }

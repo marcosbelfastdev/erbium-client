@@ -1,7 +1,9 @@
 package repositories.repo2.junit.fakeStore;
 
+import admin.fakeStore.scripts.responses.SchemaValidation;
 import br.com.erbium.core.*;
 import org.junit.jupiter.api.Test;
+import repositories.common.fakeStore.FakeStoreSchemas;
 import user.utils.JwtTokenGenerator;
 
 
@@ -61,7 +63,6 @@ public class PostmanInternetHelloWorldCustomRouters {
                 .e$(FAKESTORE_LOGIN)
                 // Force the variable token to get the value of token property after response
                 .qrset("token", "$.token").backToCollection()
-
                 // submit all selected endpoints in one go
                 .selectedEndpoints(Endpoint::submit);
     }

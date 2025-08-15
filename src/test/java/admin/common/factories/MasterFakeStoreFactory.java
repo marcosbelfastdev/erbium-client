@@ -2,6 +2,7 @@ package admin.common.factories;
 
 import admin.common.PostmanKey;
 import admin.common.scripts.responses.CheckStatusCode;
+import admin.fakeStore.scripts.responses.SchemaValidation;
 import br.com.erbium.core.Workspace;
 
 import java.time.Duration;
@@ -28,8 +29,8 @@ public class MasterFakeStoreFactory {
                 // Add the general codes to all endpoints
                 .getEndpoints().forEach(endpoint -> {
                     endpoint.addResponseScript("Check status code", CheckStatusCode.class);
+                    endpoint.addResponseScript("Check schema", SchemaValidation.class);
                 });
-
 
         return workspace;
     }
