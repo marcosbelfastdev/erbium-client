@@ -2,7 +2,7 @@ package repositories.repo2.junit.fakeStore;
 
 import br.com.erbium.core.*;
 import org.junit.jupiter.api.Test;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 
 import java.time.Duration;
@@ -61,7 +61,6 @@ public class PostmanInternetHelloWorldCustomRouters {
                 .e$(FAKESTORE_LOGIN)
                 // Force the variable token to get the value of token property after response
                 .qrset("token", "$.token").backToCollection()
-
                 // submit all selected endpoints in one go
                 .selectedEndpoints(Endpoint::submit);
     }

@@ -1,4 +1,4 @@
-package user.utils;
+package customization.utils;
 
 
 import br.com.erbium.core.Endpoint;

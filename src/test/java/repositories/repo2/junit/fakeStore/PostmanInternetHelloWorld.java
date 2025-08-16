@@ -2,7 +2,7 @@ package repositories.repo2.junit.fakeStore;
 
 import br.com.erbium.core.*;
 import org.junit.jupiter.api.Test;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 import java.time.Duration;
 

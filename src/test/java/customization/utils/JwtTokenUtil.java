@@ -1,4 +1,4 @@
-package user.utils;
+package customization.utils;
 
 import java.util.Base64;
 import java.util.UUID;

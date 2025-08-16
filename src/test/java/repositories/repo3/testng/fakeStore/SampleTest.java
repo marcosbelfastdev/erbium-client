@@ -4,18 +4,10 @@ import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Assertions;
-import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.*;
-import repositories.repo3.testng.testngFactories.TestNgMainFactory;
-import user.utils.JwtTokenGenerator;
-
-import java.time.Duration;
+import customization.utils.JwtTokenGenerator;
 
 import static admin.common.factories.MasterFakeStoreFactory.*;
-import static admin.common.factories.MasterFakeStoreFactory.FAKESTORE_GET_CATEGORIES;
-import static admin.common.factories.MasterFakeStoreFactory.FAKESTORE_GET_PRODUCTS;
-import static admin.common.factories.MasterFakeStoreFactory.FAKESTORE_LOGIN;
 
 public class SampleTest extends TestNgHooks {
 

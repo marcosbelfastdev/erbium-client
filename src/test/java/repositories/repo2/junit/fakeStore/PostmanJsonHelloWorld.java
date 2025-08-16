@@ -4,7 +4,7 @@ import admin.common.factories.MasterFakeStoreFactory;
 import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Test;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 
 public class PostmanJsonHelloWorld {

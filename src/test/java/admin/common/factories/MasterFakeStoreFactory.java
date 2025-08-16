@@ -2,7 +2,9 @@ package admin.common.factories;
 
 import admin.common.PostmanKey;
 import admin.common.scripts.responses.CheckStatusCode;
+import admin.fakeStore.scripts.responses.SchemaValidation;
 import br.com.erbium.core.Workspace;
+import repositories.common.fakeStore.FakeStoreSchemas;
 
 import java.time.Duration;
 
@@ -28,12 +30,14 @@ public class MasterFakeStoreFactory {
                 // Add the general codes to all endpoints
                 .getEndpoints().forEach(endpoint -> {
                     endpoint.addResponseScript("Check status code", CheckStatusCode.class);
+                    String endpointName = endpoint.name();
+                    endpoint.addResponseScript("Check schema", new SchemaValidation().setSchema(FakeStoreSchemas.get(endpointName), endpointName));
                 });
-
 
         return workspace;
     }
 
+    // Collections and endpoint constants
     public static final String FAKESTORE_COLLECTION = "Fake Store API Collection";
     public static final String FAKESTORE_COLLECTION_UID = "10891144-bbb2afb7-123c-4e52-aeb2-432e40ac004c";
     public static final String FAKESTORE_POSTMAN_API_KEY = PostmanKey.demoKey();
@@ -50,5 +54,9 @@ public class MasterFakeStoreFactory {
     public static final String FAKESTORE_ADD_USER = FAKESTORE_USERS + "Add user";
     public static final String FAKESTORE_GET_SINGLE_USER = FAKESTORE_USERS + "Get single user";
     public static final String FAKESTORE_GET_USERS = FAKESTORE_USERS + "Get users";
+
+    // Script names
+    public static final String CHECK_STATUS_CODE = "Check status code";
+    public static final String CHECK_SCHEMA = "Check schema";
 
 }
