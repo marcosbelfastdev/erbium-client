@@ -5,7 +5,7 @@ import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.*;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 import static admin.common.factories.MasterFakeStoreFactory.*;
 

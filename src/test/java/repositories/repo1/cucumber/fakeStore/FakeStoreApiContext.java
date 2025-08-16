@@ -7,7 +7,7 @@ import br.com.erbium.core.Workspace;
 import io.cucumber.java.Scenario;
 import lombok.Getter;
 import customization.factories.TeamFakeStoreCucumberFactory;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 /**
  * A simple container for sharing state between steps in a single scenario.

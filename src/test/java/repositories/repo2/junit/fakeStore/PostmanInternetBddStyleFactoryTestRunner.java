@@ -8,7 +8,7 @@ import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import customization.factories.TeamFakeStoreFactory;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 import static admin.common.factories.MasterFakeStoreFactory.*;
 

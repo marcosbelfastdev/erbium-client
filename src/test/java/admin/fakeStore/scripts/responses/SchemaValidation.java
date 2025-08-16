@@ -1,6 +1,8 @@
 package admin.fakeStore.scripts.responses;
 
 import br.com.erbium.core.Collection;
+import br.com.erbium.core.EItem;
+import br.com.erbium.core.EType;
 import br.com.erbium.core.ResponseManager;
 import br.com.erbium.core.base.scripts.ResponseScript;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,15 +22,24 @@ public class SchemaValidation extends ResponseScript {
     @Getter
     Boolean isValid;
     String schemaJson;
+    String endpointName;
 
-    public SchemaValidation setSchema(String schemaJson) {
+    public SchemaValidation setSchema(String schemaJson, String endpointName) {
         this.schemaJson = schemaJson;
+        this.endpointName = endpointName;
         return this;
     }
 
     public Boolean isValidSchema() {
         if (isValid == null) {
             exec();
+        }
+        if (isValid == null)
+            return true;
+        if (!isValid) {
+            responseManager().out().log(EType.ERROR, EItem.MESSAGE, "The following schema belonging to endpoint " + endpointName + " is invalid:\n" + schemaJson);
+        } else {
+            responseManager().out().log(EType.SUCESS, EItem.MESSAGE, "SUCCESS");
         }
         return isValid;
     }
@@ -43,6 +54,7 @@ public class SchemaValidation extends ResponseScript {
     public void run() {
 
         if (schemaJson == null || schemaJson.isEmpty()) {
+            responseManager().out().log(EType.LIGHT_WARNING, EItem.MESSAGE, "\nSchema not found for endpoint: " + endpointName);
             isValid = null;
             return;
         }
@@ -61,5 +73,6 @@ public class SchemaValidation extends ResponseScript {
 
         Set<ValidationMessage> errors = schema.validate(jsonNode);
         isValid = errors.isEmpty();
+        responseManager().out().log(EType.INFO, EItem.MESSAGE, "\nValidating schema for endpoint: " + endpointName);
     }
 }

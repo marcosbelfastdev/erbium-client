@@ -20,9 +20,6 @@ public class TeamFakeStoreFactory {
         Collection collection = workspace.c$(FAKESTORE_COLLECTION);
 
         // Adding response script for schema validation
-        collection.getEndpoints().forEach((endpoint) -> {
-            endpoint.getResponseScript(SchemaValidation.class).setSchema(FakeStoreSchemas.get(endpoint.getName()));
-        });
 
 
         // Add triggers that will be called before and after each test

@@ -1,10 +1,8 @@
 package repositories.repo2.junit.fakeStore;
 
-import admin.fakeStore.scripts.responses.SchemaValidation;
 import br.com.erbium.core.*;
 import org.junit.jupiter.api.Test;
-import repositories.common.fakeStore.FakeStoreSchemas;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 
 import java.time.Duration;

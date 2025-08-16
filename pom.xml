@@ -97,7 +97,7 @@
         <dependency>
             <groupId>com.github.marcosbelfastdev</groupId> <!-- Replace with your GitHub username -->
             <artifactId>erbium-api</artifactId>
-            <version>v0.3.0-alpha</version> <!-- Or commit hash, branch -->
+            <version>d4124af71392e34007c70210079aab9fb65c68d2</version> <!-- Or commit hash, branch -->
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

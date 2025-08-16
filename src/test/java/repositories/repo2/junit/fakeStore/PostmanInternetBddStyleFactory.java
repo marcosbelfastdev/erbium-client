@@ -7,8 +7,7 @@ import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import customization.factories.TeamFakeStoreFactory;
-import repositories.common.fakeStore.FakeStoreSchemas;
-import user.utils.JwtTokenGenerator;
+import customization.utils.JwtTokenGenerator;
 
 import static admin.common.factories.MasterFakeStoreFactory.*;
 
@@ -48,9 +47,8 @@ public class PostmanInternetBddStyleFactory {
 
                 .then("check status codes and schema", (collection) -> {
                     collection.selectedEndpoints(endpoint -> {
-                        String endpointName = endpoint.name();
                         Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200, 201));
-                        endpoint.getResponseScript(SchemaValidation.class).assertSchema();
+                        Assertions.assertTrue(endpoint.getResponseScript(SchemaValidation.class).isValidSchema());
                     });
                 });
     }

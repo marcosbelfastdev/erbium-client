@@ -1,4 +1,4 @@
-package user.utils;
+package customization.utils;
 
 public class JwtTokenGenerator {
     String jwtToken;
