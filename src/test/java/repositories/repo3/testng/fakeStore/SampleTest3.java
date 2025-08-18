@@ -3,13 +3,13 @@ package repositories.repo3.testng.fakeStore;
 import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Endpoint;
 import br.com.erbium.core.Workspace;
-import org.junit.jupiter.api.Assertions;
-import org.testng.annotations.*;
 import customization.utils.JwtTokenGenerator;
+import org.junit.jupiter.api.Assertions;
+import org.testng.annotations.Test;
 
 import static admin.common.factories.MasterFakeStoreFactory.*;
 
-public class SampleTest extends TestNgHooks {
+public class SampleTest3 extends TestNgHooks {
 
 
     @Test(priority = 1)
