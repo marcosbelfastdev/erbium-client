@@ -57,10 +57,7 @@ public class SampleTest extends TestNgHooks {
 
                             .e$(FAKESTORE_LOGIN)
                             // Force the variable token to get the value of token property after response
-                            .qrset("token", "$.token").backToCollection();
-//                            .getEndpoints().forEach(endpoint -> {
-//                                endpoint.addResponseScript("Check status code", CheckStatusCode.class);
-//                            });
+                            .qrset("token", "$.token");
                 })
 
                 .when("submit all", (collection) -> {
