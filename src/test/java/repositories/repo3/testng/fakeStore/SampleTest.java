@@ -6,11 +6,13 @@ import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.*;
 import customization.utils.JwtTokenGenerator;
+import repositories.repo3.testng.testngFactories.TestNgMainFactory;
 
 import static admin.common.factories.MasterFakeStoreFactory.*;
 
 public class SampleTest extends TestNgHooks {
 
+    TestNgMainFactory testNgMainFactory = TestNgMainFactory.getInstance();
 
     @Test(priority = 1)
     public void testOne() {

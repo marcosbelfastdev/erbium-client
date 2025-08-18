@@ -1,8 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="MySuite">
+<suite name="MySuite" parallel="classes" thread-count="3">
     <test name="MyTests">
         <classes>
             <class name="repositories.repo3.testng.fakeStore.SampleTest"/>
+            <class name="repositories.repo3.testng.fakeStore.SampleTest2"/>
+            <class name="repositories.repo3.testng.fakeStore.SampleTest3"/>
         </classes>
     </test>
 </suite>
