@@ -19,6 +19,7 @@ for **Erbium**.
     -   Older versions (≤ 3.8.x) may still run on Java 21, but are *not
         guaranteed* (some users hit issues with toolchains, TLS, or ASM
         dependencies).
+    -   mvn clean install -DskipTests
 
 ------------------------------------------------------------------------
 
