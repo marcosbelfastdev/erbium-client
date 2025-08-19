@@ -26,6 +26,8 @@
 
     <dependencyManagement>
         <dependencies>
+
+
             <!-- Import Cucumber BOM to manage versions for all cucumber dependencies -->
             <dependency>
                 <groupId>io.cucumber</groupId>
@@ -46,6 +48,28 @@
     </dependencyManagement>
 
     <dependencies>
+
+        <!-- Cucumber core -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.18.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Allure adapter for Cucumber JVM 7 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>2.24.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>2.24.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.networknt</groupId>
@@ -110,6 +134,12 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
+            </plugin>
             <!-- Modern Maven Compiler Plugin with Java 21 support -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -16,18 +16,19 @@ import customization.utils.JwtTokenGenerator;
  */
 public class FakeStoreApiContext {
 
-    public static FakeStoreApiContext instance;
+    public static ThreadLocal<FakeStoreApiContext> instance = new ThreadLocal<>();
 
     @Getter
     Workspace workspace;
     JwtTokenGenerator jwtTokenGenerator;
 
     public static FakeStoreApiContext getInstance() {
-        return instance == null ? instance = new FakeStoreApiContext() : instance;
+        return instance.get();
     }
 
     public static FakeStoreApiContext getNewInstance() {
-        return instance = new FakeStoreApiContext();
+        instance.set(new FakeStoreApiContext());
+        return instance.get();
     }
 
     public void createWorkspace(Scenario scenario) {

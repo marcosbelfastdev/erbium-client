@@ -20,6 +20,7 @@ public class CucumberRouter implements ReportRouter {
     }
 
     private void addToBuffer(LogType eType, LogItem eItem, String s) {
+
         if (eItem == LogItem.TIMER || eType == LogType.END) {
             buffer.append("\n"+ s);
             scenario.log(buffer.toString());

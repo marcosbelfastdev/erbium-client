@@ -35,6 +35,5 @@ public class Hooks {
 
     @After
     public void teardownAfterScenario(Scenario scenario) {
-        FakeStoreApiContext.getInstance().getWorkspace().out().log(LogType.END, LogItem.MESSAGE, "End of Scenario");
     }
 }

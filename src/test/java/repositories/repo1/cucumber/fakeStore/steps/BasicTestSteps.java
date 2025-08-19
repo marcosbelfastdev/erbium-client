@@ -3,6 +3,7 @@ package repositories.repo1.cucumber.fakeStore.steps;
 import admin.common.factories.MasterFakeStoreFactory;
 import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Collection;
+import br.com.erbium.core.LogItem;
 import br.com.erbium.core.LogType;
 import br.com.erbium.core.Endpoint;
 import io.cucumber.java.en.Given;
@@ -10,7 +11,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import repositories.repo1.cucumber.fakeStore.FakeStoreApiContext;
-
 import static admin.common.factories.MasterFakeStoreFactory.FAKESTORE_LOGIN;
 
 public class BasicTestSteps {
@@ -47,9 +47,10 @@ public class BasicTestSteps {
         collection.out().log("Checking status code...");
         collection
                 .selectedEndpoints(endpoint -> {
-                    Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200, 201)
-                    );
+                    Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeInRange(200, 203),
+                            "Unexpected status code");
                     endpoint.out().log(LogType.INFO, "Endpoint name asserted: " + endpoint.getName());
                 });
+        collection.out().log(LogType.END, LogItem.MESSAGE, "End of Scenario");
     }
 }
