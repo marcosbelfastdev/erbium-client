@@ -26,22 +26,22 @@
 
     <dependencyManagement>
         <dependencies>
-        <!-- Import Cucumber BOM to manage versions for all cucumber dependencies -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-bom</artifactId>
-            <version>${cucumber.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-        <!-- Import JUnit 5 BOM for consistent versions -->
-        <dependency>
-            <groupId>org.junit</groupId>
-            <artifactId>junit-bom</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+            <!-- Import Cucumber BOM to manage versions for all cucumber dependencies -->
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-bom</artifactId>
+                <version>${cucumber.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Import JUnit 5 BOM for consistent versions -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -54,12 +54,12 @@
         </dependency>
 
 
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>7.10.2</version> <!-- latest stable as of Aug 2025 -->
-                <scope>test</scope>
-            </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version> <!-- latest stable as of Aug 2025 -->
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.uncommons</groupId>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>com.github.marcosbelfastdev</groupId> <!-- Replace with your GitHub username -->
             <artifactId>erbium-api</artifactId>
-            <version>d4124af71392e34007c70210079aab9fb65c68d2</version> <!-- Or commit hash, branch -->
+            <version>f74b27135cc1145ae8d09269517725757a9c3147</version> <!-- Or commit hash, branch -->
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -141,4 +141,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

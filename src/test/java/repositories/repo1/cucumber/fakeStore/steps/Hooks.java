@@ -1,5 +1,8 @@
 package repositories.repo1.cucumber.fakeStore.steps;
 
+import br.com.erbium.core.LogItem;
+import br.com.erbium.core.LogType;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import repositories.repo1.cucumber.fakeStore.FakeStoreApiContext;
@@ -28,5 +31,10 @@ public class Hooks {
         // Let's create a new workspace from scratch every time we run a scenario
         // so to make sure we're starting with a clean state
         FakeStoreApiContext.getNewInstance().createWorkspace(scenario);
+    }
+
+    @After
+    public void teardownAfterScenario(Scenario scenario) {
+        FakeStoreApiContext.getInstance().getWorkspace().out().log(LogType.END, LogItem.MESSAGE, "End of Scenario");
     }
 }

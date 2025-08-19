@@ -8,6 +8,8 @@ import org.testng.annotations.*;
 import customization.utils.JwtTokenGenerator;
 import repositories.repo3.testng.testngFactories.TestNgMainFactory;
 
+import java.util.UUID;
+
 import static admin.common.factories.MasterFakeStoreFactory.*;
 
 public class SampleTest extends TestNgHooks {

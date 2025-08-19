@@ -15,8 +15,8 @@ public class PostmanInternetHelloWorldCustomRouters {
     public void test() {
 
         OutputConfig config = new OutputConfig() // creates and sets WHAT is logged (all by default, then:)
-                .set(TargetOutput.NONE, EItem.ENVIRONMENT_TABLE) // remove item from destinations
-                .set(TargetOutput.CONSOLE, EItem.REQUEST_METHOD, EItem.REQUEST_URL); // and leave some items for console
+                .set(TargetOutput.NONE, LogItem.ENVIRONMENT_TABLE) // remove item from destinations
+                .set(TargetOutput.CONSOLE, LogItem.REQUEST_METHOD, LogItem.REQUEST_URL); // and leave some items for console
 
         Routers routers = new Routers(config); // create router container
         routers.add(new DefaultConsoleRouter()); // add first report router (console in this case)

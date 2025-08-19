@@ -3,6 +3,7 @@ package repositories.repo1.cucumber.fakeStore.steps;
 import admin.common.factories.MasterFakeStoreFactory;
 import admin.common.scripts.responses.CheckStatusCode;
 import br.com.erbium.core.Collection;
+import br.com.erbium.core.LogType;
 import br.com.erbium.core.Endpoint;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -48,7 +49,7 @@ public class BasicTestSteps {
                 .selectedEndpoints(endpoint -> {
                     Assertions.assertTrue(endpoint.getResponseScript(CheckStatusCode.class).isStatusCodeAnyOf(200, 201)
                     );
-                    endpoint.out().log("Endpoint name asserted: " + endpoint.getName());
+                    endpoint.out().log(LogType.INFO, "Endpoint name asserted: " + endpoint.getName());
                 });
     }
 }

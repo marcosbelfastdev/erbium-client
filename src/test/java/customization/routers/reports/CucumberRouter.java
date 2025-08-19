@@ -1,17 +1,38 @@
 package customization.routers.reports;
 
-import br.com.erbium.core.EItem;
-import br.com.erbium.core.EType;
+import br.com.erbium.core.LogItem;
+import br.com.erbium.core.LogType;
+import br.com.erbium.core.LogItem;
+import br.com.erbium.core.LogType;
 import br.com.erbium.core.ReportRouter;
+import br.com.erbium.core.TargetOutput;
 import io.cucumber.java.Scenario;
 
 public class CucumberRouter implements ReportRouter {
 
+    StringBuilder buffer = new StringBuilder();
+
     Scenario scenario;
-    int targetOutput;
+    int targetOutput = TargetOutput.REPORT;
 
     public CucumberRouter(Scenario scenario) {
         this.scenario = scenario;
+    }
+
+    private void addToBuffer(LogType eType, LogItem eItem, String s) {
+        if (eItem == LogItem.TIMER || eType == LogType.END) {
+            buffer.append("\n"+ s);
+            scenario.log(buffer.toString());
+            buffer = new StringBuilder();
+            return;
+        }
+        buffer.append("\n"+ s);
+    }
+
+    @Override
+    public void commit() {
+        scenario.log(buffer.toString());
+        buffer = new StringBuilder();
     }
 
     @Override
@@ -25,23 +46,23 @@ public class CucumberRouter implements ReportRouter {
     }
 
     @Override
-    public void route(EType eType, EItem eItem, String s) {
-        scenario.log(eType.toString() + " " + eItem.toString() + " " + s);
+    public void route(LogType eType, LogItem eItem, String s) {
+        addToBuffer(eType, eItem, s);
     }
 
     @Override
     public void route(String s) {
-        scenario.log(s);
+        addToBuffer(LogType.UDEF, LogItem.MESSAGE, s);
     }
 
     @Override
-    public void route(EType eType, String s) {
-        scenario.log(eType.toString() + " " + s);
+    public void route(LogType eType, String s) {
+        addToBuffer(eType, LogItem.MESSAGE, s);
     }
 
     @Override
-    public void route(EItem eItem, String s) {
-        scenario.log(eItem.toString() + " " + s);
+    public void route(LogItem eItem, String s) {
+        addToBuffer(LogType.UDEF, eItem, s);
     }
 
     @Override

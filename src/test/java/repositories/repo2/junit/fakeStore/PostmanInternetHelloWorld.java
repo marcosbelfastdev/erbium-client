@@ -46,7 +46,5 @@ public class PostmanInternetHelloWorld {
 
                 // submit all selected endpoints in one go
                 .selectedEndpoints(Endpoint::submit);
-
-
     }
 }
