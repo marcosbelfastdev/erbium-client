@@ -2,7 +2,7 @@ package repositories.repo3.testng.fakeStore;
 
 import org.testng.Reporter;
 import org.testng.annotations.*;
-import repositories.repo3.testng.testngFactories.TestNgMainFactory;
+import customization.factories.TestNgMainFactory;
 
 public class TestNgHooks {
 

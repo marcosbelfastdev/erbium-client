@@ -1,25 +1,10 @@
-package repositories.repo3.testng.testngFactories;
+package customization.factories;
 
 import br.com.erbium.core.*;
-import customization.factories.TeamFakeStoreFactory;
-import customization.routers.reports.CucumberRouter;
 import customization.routers.reports.TestNgRouter;
 import lombok.Getter;
-import org.junit.jupiter.api.Test;
 
 public class TestNgMainFactory {
-
-    public static ThreadLocal<TestNgMainFactory> instance = new ThreadLocal<>();
-
-    public static TestNgMainFactory getInstance() {
-        if (instance == null) {
-            instance = new ThreadLocal<>();
-        }
-        if (instance.get() == null) {
-            instance.set(new TestNgMainFactory());
-        }
-        return instance.get();
-    }
 
     @Getter
     Workspace workspace;

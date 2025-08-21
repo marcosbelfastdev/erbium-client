@@ -6,18 +6,15 @@ import br.com.erbium.core.Workspace;
 import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.*;
 import customization.utils.JwtTokenGenerator;
-import repositories.repo3.testng.testngFactories.TestNgMainFactory;
-
-import java.util.UUID;
+import customization.factories.TestNgMainFactory;
 
 import static admin.common.factories.MasterFakeStoreFactory.*;
 
 public class SampleTest extends TestNgHooks {
 
-    TestNgMainFactory testNgMainFactory = TestNgMainFactory.getInstance();
-
     @Test(priority = 1)
     public void testOne() {
+        TestNgMainFactory testNgMainFactory = new TestNgMainFactory();
         Workspace workspace = testNgMainFactory.createWorkspace();
         JwtTokenGenerator jwtTokenGenerator = new JwtTokenGenerator();
 
@@ -43,6 +40,7 @@ public class SampleTest extends TestNgHooks {
 
     @Test(priority = 2)
     public void testTwo() {
+        TestNgMainFactory testNgMainFactory = new TestNgMainFactory();
         Workspace workspace = testNgMainFactory.createWorkspace();
         JwtTokenGenerator jwtTokenGenerator = new JwtTokenGenerator();
 
@@ -78,6 +76,7 @@ public class SampleTest extends TestNgHooks {
 
     @Test(priority = 3)
     public void testThree() {
+        TestNgMainFactory testNgMainFactory = new TestNgMainFactory();
         Workspace workspace = testNgMainFactory.createWorkspace();
         JwtTokenGenerator jwtTokenGenerator = new JwtTokenGenerator();
 
