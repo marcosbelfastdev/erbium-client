@@ -31,7 +31,7 @@ public class MasterFakeStoreFactory {
                 .getEndpoints().forEach(endpoint -> {
                     endpoint.addResponseScript("Check status code", CheckStatusCode.class);
                     String endpointName = endpoint.name();
-                    endpoint.addResponseScript("Check schema", new SchemaValidation().setSchema(FakeStoreSchemas.get(endpointName), endpointName));
+                    endpoint.addResponseScript("Check schema", new SchemaValidation().setSchema(FakeStoreSchemas.get(endpoint), endpoint));
                 });
 
         return workspace;

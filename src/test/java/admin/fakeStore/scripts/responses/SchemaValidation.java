@@ -1,9 +1,6 @@
 package admin.fakeStore.scripts.responses;
 
-import br.com.erbium.core.Collection;
-import br.com.erbium.core.LogItem;
-import br.com.erbium.core.LogType;
-import br.com.erbium.core.ResponseManager;
+import br.com.erbium.core.*;
 import br.com.erbium.core.base.scripts.ResponseScript;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,9 +21,9 @@ public class SchemaValidation extends ResponseScript {
     String schemaJson;
     String endpointName;
 
-    public SchemaValidation setSchema(String schemaJson, String endpointName) {
+    public SchemaValidation setSchema(String schemaJson, Endpoint endpoint) {
         this.schemaJson = schemaJson;
-        this.endpointName = endpointName;
+        this.endpointName = endpoint.name();
         return this;
     }
 
@@ -54,6 +51,8 @@ public class SchemaValidation extends ResponseScript {
     public void run() {
 
         if (schemaJson == null || schemaJson.isEmpty()) {
+            if (endpointName == null)
+                return;
             responseManager().out().log(LogType.LIGHT_WARNING, LogItem.MESSAGE, "\nSchema not found for endpoint: " + endpointName);
             isValid = null;
             return;

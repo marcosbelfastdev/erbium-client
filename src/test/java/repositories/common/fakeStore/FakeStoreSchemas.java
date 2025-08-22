@@ -1,10 +1,12 @@
 package repositories.common.fakeStore;
 
 import admin.common.factories.MasterFakeStoreFactory;
+import br.com.erbium.core.Endpoint;
 
 public class FakeStoreSchemas {
 
-    public static String get(String endpointName) {
+    public static String get(Endpoint endpoint) {
+        String endpointName = endpoint.name();
         switch (endpointName) {
             case MasterFakeStoreFactory.FAKESTORE_LOGIN:
                 return """
