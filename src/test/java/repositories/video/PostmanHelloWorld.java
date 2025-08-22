@@ -25,6 +25,10 @@ public class PostmanHelloWorld {
                 .addCollection(FAKESTORE_COLLECTION)
                 .importPostManCollection(FAKESTORE_COLLECTION_UID, FAKESTORE_POSTMAN_API_KEY)
 
+                // Import the json file in 'resources' folder and change
+                // collection uid and postman key accordingly to run your own tests
+                // Read the README.md
+
                 .e$(FAKESTORE_LOGIN).qrset("token", "$.token").select()
                 .e$(FAKESTORE_GET_CATEGORIES).qrset("productCategory", "$.[-1]").select()
                 .e$(FAKESTORE_GET_PRODUCTS_BY_CATEGORY).qrset("productId", "$.[-1]id").select()
