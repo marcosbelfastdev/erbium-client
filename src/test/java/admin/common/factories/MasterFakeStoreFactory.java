@@ -29,7 +29,7 @@ public class MasterFakeStoreFactory {
 
                 // Add the general codes to all endpoints
                 .getEndpoints().forEach(endpoint -> {
-                    endpoint.addResponseScript("Check status code", CheckStatusCode.class);
+                    endpoint.addResponseScript("Check status code", new CheckStatusCode(endpoint));
                     String endpointName = endpoint.name();
                     endpoint.addResponseScript("Check schema", new SchemaValidation().setSchema(FakeStoreSchemas.get(endpoint), endpoint));
                 });
