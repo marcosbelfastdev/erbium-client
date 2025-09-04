@@ -2,10 +2,14 @@ package repositories.repo1.cucumber.fakeStore.steps;
 
 import br.com.erbium.core.LogItem;
 import br.com.erbium.core.LogType;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import repositories.repo1.cucumber.fakeStore.FakeStoreApiContext;
+
+import java.nio.charset.StandardCharsets;
+
+import static admin.common.factories.MasterFakeStoreFactory.FAKESTORE_COLLECTION;
 
 /**
  * This class contains Cucumber hooks, which are blocks of code that run
@@ -35,5 +39,20 @@ public class Hooks {
 
     @After
     public void teardownAfterScenario(Scenario scenario) {
+
+    }
+
+    @BeforeAll
+    public static void beforeAll() {
+
+    }
+
+    @AfterStep
+    public void afterStep(Scenario scenario) {
+    }
+
+    @BeforeStep
+    public void beforeStep() {
+
     }
 }

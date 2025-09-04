@@ -18,7 +18,10 @@ public class TeamFakeStoreCucumberFactory {
 
     public Workspace createWorkspace(Scenario scenario) {
 
-        OutputConfig config = new OutputConfig(); // creates and sets WHAT is logged (all by default, then:)
+        OutputConfig config = new OutputConfig()
+                .setAllItems(TargetOutput.NONE)
+                .setAllItems(TargetOutput.REPORT);
+                //.set(TargetOutput.NONE,LogType.END)// creates and sets WHAT is logged (all by default, then:)
 //                .set(TargetOutput.NONE, EItem.ENVIRONMENT_TABLE) // remove item from destinations
 //                .set(TargetOutput.CONSOLE, EItem.REQUEST_METHOD, EItem.REQUEST_URL); // and leave some items for console
 

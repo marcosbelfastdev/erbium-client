@@ -7,6 +7,7 @@ import br.com.erbium.core.LogType;
 import br.com.erbium.core.ReportRouter;
 import br.com.erbium.core.TargetOutput;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 
 public class CucumberRouter implements ReportRouter {
 
@@ -21,18 +22,18 @@ public class CucumberRouter implements ReportRouter {
 
     private void addToBuffer(LogType eType, LogItem eItem, String s) {
 
-        if (eItem == LogItem.TIMER || eType == LogType.END) {
-            buffer.append("\n"+ s);
-            scenario.log(buffer.toString());
-            buffer = new StringBuilder();
-            return;
-        }
         buffer.append("\n"+ s);
+        if (eItem == LogItem.TIMER || eType == LogType.END) {
+            commit();
+        }
+        //buffer.append("\n"+ s);
     }
 
     @Override
     public void commit() {
-        scenario.log(buffer.toString());
+        //scenario.log(buffer.toString());
+        Allure.addAttachment("Allure Note", "text/plain",
+                buffer.toString());
         buffer = new StringBuilder();
     }
 

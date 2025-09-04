@@ -11,7 +11,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import repositories.repo1.cucumber.fakeStore.FakeStoreApiContext;
-import static admin.common.factories.MasterFakeStoreFactory.FAKESTORE_LOGIN;
+
+import static admin.common.factories.MasterFakeStoreFactory.*;
 
 public class BasicTestSteps {
 
@@ -34,8 +35,8 @@ public class BasicTestSteps {
         collection.out().log("Submitting endpoints...");
         collection
                 .e$(FAKESTORE_LOGIN).select()
-                .e$(MasterFakeStoreFactory.FAKESTORE_GET_PRODUCTS).select()
-                .e$(MasterFakeStoreFactory.FAKESTORE_GET_CATEGORIES).select()
+                .e$(FAKESTORE_GET_PRODUCTS).select()
+                .e$(FAKESTORE_GET_CATEGORIES).select()
                 .e$(FAKESTORE_LOGIN)
                 .qrset("token", "$.token").backToCollection()
                 .selectedEndpoints(Endpoint::submit);
@@ -51,6 +52,7 @@ public class BasicTestSteps {
                             "Unexpected status code");
                     endpoint.out().log(LogType.INFO, "Endpoint name asserted: " + endpoint.getName());
                 });
-        collection.out().log(LogType.END, LogItem.MESSAGE, "End of Scenario");
+        collection.out().console(LogType.END, LogItem.MESSAGE, "End of Scenario");
+        collection.out().commitAll();
     }
 }
